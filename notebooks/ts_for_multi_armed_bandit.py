@@ -20,7 +20,7 @@
 #
 # In this Notebook, let us introduce the Multi-Armed Bandit problem and compare some decision policies like $\epsilon$-greedy, UCB, and our contestant Thompson Sampling.
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:18.886478Z", "iopub.status.busy": "2020-09-30T06:44:18.885961Z", "iopub.status.idle": "2020-09-30T06:44:18.906455Z", "shell.execute_reply": "2020-09-30T06:44:18.905305Z", "shell.execute_reply.started": "2020-09-30T06:44:18.886335Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:35.864484Z", "iopub.execute_input": "2020-10-11T06:36:35.864686Z", "iopub.status.idle": "2020-10-11T06:36:35.880188Z", "shell.execute_reply.started": "2020-10-11T06:36:35.864632Z", "shell.execute_reply": "2020-10-11T06:36:35.879740Z"}
 # plotting inline
 # %matplotlib inline
 
@@ -51,7 +51,7 @@ plt.style.use('default')
 # We can easily define a set of bandits with known reward probabilities and implement methods for drawing rewards for them. We also compute the **regret**, which is the difference $\theta_{max} - \theta_i$ of the expected reward $\theta_i$ of our chosen bandit $i$ and the largest expected reward $\theta_{max}$. Let us implement this using a class.
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:18.908360Z", "iopub.status.busy": "2020-09-30T06:44:18.908047Z", "iopub.status.idle": "2020-09-30T06:44:18.917469Z", "shell.execute_reply": "2020-09-30T06:44:18.916374Z", "shell.execute_reply.started": "2020-09-30T06:44:18.908321Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:35.880928Z", "iopub.execute_input": "2020-10-11T06:36:35.881058Z", "iopub.status.idle": "2020-10-11T06:36:35.885222Z", "shell.execute_reply.started": "2020-10-11T06:36:35.881042Z", "shell.execute_reply": "2020-10-11T06:36:35.884753Z"}
 # class for our row of bandits
 class MAB:
 
@@ -69,18 +69,18 @@ class MAB:
             self.bandit_probs) - self.bandit_probs[k]
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:18.920076Z", "iopub.status.busy": "2020-09-30T06:44:18.919714Z", "iopub.status.idle": "2020-09-30T06:44:18.926138Z", "shell.execute_reply": "2020-09-30T06:44:18.924853Z", "shell.execute_reply.started": "2020-09-30T06:44:18.920033Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:35.886081Z", "iopub.execute_input": "2020-10-11T06:36:35.886231Z", "iopub.status.idle": "2020-10-11T06:36:35.891534Z", "shell.execute_reply.started": "2020-10-11T06:36:35.886212Z", "shell.execute_reply": "2020-10-11T06:36:35.891093Z"}
 # defining a set of bandits with known probabilites
 bandit_probs = [0.35, 0.40, 0.30, 0.25]
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:18.928815Z", "iopub.status.busy": "2020-09-30T06:44:18.928216Z", "iopub.status.idle": "2020-09-30T06:44:18.934692Z", "shell.execute_reply": "2020-09-30T06:44:18.933639Z", "shell.execute_reply.started": "2020-09-30T06:44:18.928767Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:35.892290Z", "iopub.execute_input": "2020-10-11T06:36:35.892416Z", "iopub.status.idle": "2020-10-11T06:36:35.898581Z", "shell.execute_reply.started": "2020-10-11T06:36:35.892399Z", "shell.execute_reply": "2020-10-11T06:36:35.898093Z"}
 # instance of our MAB class
 mab = MAB(bandit_probs)
 
 # %% [markdown]
 # Let us use **matplotlib** to visualize random draws of these bandits. Hollow dots indicate that we pulled the arm but received no reward. Solid dots indicate that a reward was given by the bandit.
 
-# %% execution={"iopub.execute_input": "2020-09-30T07:06:31.067404Z", "iopub.status.busy": "2020-09-30T07:06:31.066990Z", "iopub.status.idle": "2020-09-30T07:06:31.320052Z", "shell.execute_reply": "2020-09-30T07:06:31.319123Z", "shell.execute_reply.started": "2020-09-30T07:06:31.067356Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:35.899429Z", "iopub.execute_input": "2020-10-11T06:36:35.899589Z", "iopub.status.idle": "2020-10-11T06:36:43.526958Z", "shell.execute_reply.started": "2020-10-11T06:36:35.899570Z", "shell.execute_reply": "2020-10-11T06:36:43.526271Z"}
 # number of draws
 N_DRAWS = 200
 
@@ -174,7 +174,7 @@ HTML(anim.to_html5_video())
 #
 # The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a bernoulli random variable after we've obserbed $\alpha$ sucesses and $\beta$ failures. Let's view some examples!
 
-# %% code_folding=[] execution={"iopub.execute_input": "2020-09-30T06:44:36.219267Z", "iopub.status.busy": "2020-09-30T06:44:36.218912Z", "iopub.status.idle": "2020-09-30T06:44:37.582950Z", "shell.execute_reply": "2020-09-30T06:44:37.581764Z", "shell.execute_reply.started": "2020-09-30T06:44:36.219221Z"}
+# %% code_folding=[] execution={"iopub.status.busy": "2020-10-11T06:36:43.527845Z", "iopub.execute_input": "2020-10-11T06:36:43.528028Z", "iopub.status.idle": "2020-10-11T06:36:44.161366Z", "shell.execute_reply.started": "2020-10-11T06:36:43.528005Z", "shell.execute_reply": "2020-10-11T06:36:44.160829Z"}
 # clearing past figures
 plt.close('all')
 
@@ -214,7 +214,7 @@ plt.tight_layout()
 
 # showing the figure
 #plt.show()
-plt.savefig('beta.png')
+plt.savefig('../output/beta.png')
 
 # %% [markdown]
 # The interpretation is simple. In the blue plot, we haven't started playing, so the only thing we can say about the probability of a reward from the bandit is that it is uniform between 0 or 1. This is our initial guess for $\theta_k$, our **prior** distribution. In the orange plot, we played two times and received two rewards, so we start moving probability mass to the right side of the plot, as we have evidence that the probability of getting a reward is high. The distribution we get after updating our **prior** is the **posterior** distribution. In the green plot, we've played seven times and got two rewards, so our guess for $\theta_k$ is more biased towards the left-hand side.
@@ -222,20 +222,20 @@ plt.savefig('beta.png')
 # As we play and gather evidence, our posterior distribution becomes more concentrated, as shown in the red, purple and brown plots. In the MAB setting, we calculate a posterior distribution for each bandit, at each round. Let us illustrate this.
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.584680Z", "iopub.status.busy": "2020-09-30T06:44:37.584348Z", "iopub.status.idle": "2020-09-30T06:44:37.590361Z", "shell.execute_reply": "2020-09-30T06:44:37.589172Z", "shell.execute_reply.started": "2020-09-30T06:44:37.584644Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:44.161886Z", "iopub.execute_input": "2020-10-11T06:36:44.162014Z", "iopub.status.idle": "2020-10-11T06:36:44.164753Z", "shell.execute_reply.started": "2020-10-11T06:36:44.162000Z", "shell.execute_reply": "2020-10-11T06:36:44.164223Z"}
 # let us create a function that returns the pdf for our beta posteriors
 def get_beta_pdf(alpha, beta):
     X = np.linspace(0, 1, 1000)
     return X, beta_dist(1 + alpha, 1 + beta).pdf(X)
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.594129Z", "iopub.status.busy": "2020-09-30T06:44:37.593721Z", "iopub.status.idle": "2020-09-30T06:44:37.601711Z", "shell.execute_reply": "2020-09-30T06:44:37.600605Z", "shell.execute_reply.started": "2020-09-30T06:44:37.594079Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:44.166543Z", "iopub.execute_input": "2020-10-11T06:36:44.166783Z", "iopub.status.idle": "2020-10-11T06:36:44.174733Z", "shell.execute_reply.started": "2020-10-11T06:36:44.166754Z", "shell.execute_reply": "2020-10-11T06:36:44.174117Z"}
 # for now, let us perform random draws
 def random_policy(k_array, reward_array, n_bandits):
     return np.random.choice(range(n_bandits), 1)[0]
 
 
-# %% cell_style="center" code_folding=[1] execution={"iopub.execute_input": "2020-09-30T07:38:58.868653Z", "iopub.status.busy": "2020-09-30T07:38:58.868276Z", "iopub.status.idle": "2020-09-30T07:38:58.901007Z", "shell.execute_reply": "2020-09-30T07:38:58.900134Z", "shell.execute_reply.started": "2020-09-30T07:38:58.868606Z"}
+# %% cell_style="center" code_folding=[1] execution={"iopub.status.busy": "2020-10-11T06:36:44.176070Z", "iopub.execute_input": "2020-10-11T06:36:44.176238Z", "iopub.status.idle": "2020-10-11T06:36:44.202669Z", "shell.execute_reply.started": "2020-10-11T06:36:44.176218Z", "shell.execute_reply": "2020-10-11T06:36:44.202125Z"}
 # let us wrap a function that draws the draws and distributions of the bandit experiment
 def plot_MAB_experiment(decision_policy, N_DRAWS, bandit_probs, plot_title, frames=N_DRAWS):
 
@@ -416,7 +416,7 @@ def plot_MAB_experiment(decision_policy, N_DRAWS, bandit_probs, plot_title, fram
     # function for creating animation
     anim = FuncAnimation(fig, animate, frames=frames, interval=500, blit=True)
     writer = matplotlib.animation.writers['ffmpeg'](bitrate=-1)
-    anim.save(f'mab_anim_{type(decision_policy).__name__}.mp4', writer=writer)
+    anim.save(f'../output/mab_anim_{type(decision_policy).__name__}.mp4', writer=writer)
     #fig.tight_layout(pad=2)
     #anim.save('mab_anim.mp4', savefig_kwargs={'pad_inches': 2})
 
@@ -427,7 +427,7 @@ def plot_MAB_experiment(decision_policy, N_DRAWS, bandit_probs, plot_title, fram
     return HTML(anim.to_html5_video())
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.638117Z", "iopub.status.busy": "2020-09-30T06:44:37.637754Z", "iopub.status.idle": "2020-09-30T06:44:37.650030Z", "shell.execute_reply": "2020-09-30T06:44:37.648543Z", "shell.execute_reply.started": "2020-09-30T06:44:37.638071Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:36:44.203461Z", "iopub.execute_input": "2020-10-11T06:36:44.203632Z", "iopub.status.idle": "2020-10-11T06:38:40.280093Z", "shell.execute_reply.started": "2020-10-11T06:36:44.203611Z", "shell.execute_reply": "2020-10-11T06:38:40.279545Z"}
 # let us plot
 plot_MAB_experiment(random_policy, 200, mab.bandit_probs,
                     'Random draws from the row of slot machines (MAB)')
@@ -452,7 +452,7 @@ plot_MAB_experiment(random_policy, 200, mab.bandit_probs,
 # In our case, the best greedy action is to select the bandit with the largest reward average, which is the one with the highest sample expected value $\textrm{argmax }\mathbf{E}[\theta_k]$. Let us implement this policy.
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.652719Z", "iopub.status.busy": "2020-09-30T06:44:37.652033Z", "iopub.status.idle": "2020-09-30T06:44:37.668128Z", "shell.execute_reply": "2020-09-30T06:44:37.666711Z", "shell.execute_reply.started": "2020-09-30T06:44:37.652665Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:38:40.280881Z", "iopub.execute_input": "2020-10-11T06:38:40.281034Z", "iopub.status.idle": "2020-10-11T06:38:40.285570Z", "shell.execute_reply.started": "2020-10-11T06:38:40.281013Z", "shell.execute_reply": "2020-10-11T06:38:40.284977Z"}
 # e-greedy policy
 class eGreedyPolicy:
 
@@ -486,11 +486,11 @@ class eGreedyPolicy:
             return np.argmax(success_ratio)
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.669559Z", "iopub.status.busy": "2020-09-30T06:44:37.669313Z", "iopub.status.idle": "2020-09-30T06:44:37.676821Z", "shell.execute_reply": "2020-09-30T06:44:37.675912Z", "shell.execute_reply.started": "2020-09-30T06:44:37.669529Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:38:40.286309Z", "iopub.execute_input": "2020-10-11T06:38:40.286462Z", "iopub.status.idle": "2020-10-11T06:38:40.295193Z", "shell.execute_reply.started": "2020-10-11T06:38:40.286443Z", "shell.execute_reply": "2020-10-11T06:38:40.294611Z"}
 # instance of this class, let us use 0.10 for the random action probability
 e_greedy_policy = eGreedyPolicy(0.10)
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.678562Z", "iopub.status.busy": "2020-09-30T06:44:37.678255Z", "iopub.status.idle": "2020-09-30T06:44:37.683665Z", "shell.execute_reply": "2020-09-30T06:44:37.682822Z", "shell.execute_reply.started": "2020-09-30T06:44:37.678517Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:38:40.295866Z", "iopub.execute_input": "2020-10-11T06:38:40.296016Z", "iopub.status.idle": "2020-10-11T06:40:41.225999Z", "shell.execute_reply.started": "2020-10-11T06:38:40.295996Z", "shell.execute_reply": "2020-10-11T06:40:41.225122Z"}
 # let us plot
 plot_MAB_experiment(
     e_greedy_policy.choose_bandit, 200, mab.bandit_probs,
@@ -516,7 +516,7 @@ plot_MAB_experiment(
 # The algorithm will pick the arm that has the maximum value at the upper confidence bound. It will balance exploration and exploitation since it will prefer less played arms which are promising. Let us implement it.
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.685748Z", "iopub.status.busy": "2020-09-30T06:44:37.685260Z", "iopub.status.idle": "2020-09-30T06:44:37.693435Z", "shell.execute_reply": "2020-09-30T06:44:37.692579Z", "shell.execute_reply.started": "2020-09-30T06:44:37.685699Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:40:41.227190Z", "iopub.execute_input": "2020-10-11T06:40:41.227469Z", "iopub.status.idle": "2020-10-11T06:40:41.233900Z", "shell.execute_reply.started": "2020-10-11T06:40:41.227432Z", "shell.execute_reply": "2020-10-11T06:40:41.233117Z"}
 # e-greedy policy
 class UCBPolicy:
 
@@ -543,11 +543,11 @@ class UCBPolicy:
         return np.argmax(success_ratio + sqrt_term)
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.694870Z", "iopub.status.busy": "2020-09-30T06:44:37.694530Z", "iopub.status.idle": "2020-09-30T06:44:37.700559Z", "shell.execute_reply": "2020-09-30T06:44:37.699442Z", "shell.execute_reply.started": "2020-09-30T06:44:37.694828Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:40:41.235207Z", "iopub.execute_input": "2020-10-11T06:40:41.235513Z", "iopub.status.idle": "2020-10-11T06:40:41.244588Z", "shell.execute_reply.started": "2020-10-11T06:40:41.235473Z", "shell.execute_reply": "2020-10-11T06:40:41.243838Z"}
 # instance of UCB class
 ucb_policy = UCBPolicy()
 
-# %% execution={"iopub.execute_input": "2020-09-30T06:44:37.702715Z", "iopub.status.busy": "2020-09-30T06:44:37.702120Z", "iopub.status.idle": "2020-09-30T06:44:37.710704Z", "shell.execute_reply": "2020-09-30T06:44:37.709636Z", "shell.execute_reply.started": "2020-09-30T06:44:37.702625Z"}
+# %% execution={"iopub.status.busy": "2020-10-11T06:40:41.245556Z", "iopub.execute_input": "2020-10-11T06:40:41.245820Z"}
 # let us plot'
 plot_MAB_experiment(ucb_policy.choose_bandit, 200, mab.bandit_probs,
                     'UCB decision policy: using uncertainty and optimism')
@@ -568,7 +568,7 @@ plot_MAB_experiment(ucb_policy.choose_bandit, 200, mab.bandit_probs,
 # This algorithm is fairly old and did not receive much attention before [this publication](https://papers.nips.cc/paper/4321-an-empirical-evaluation-of-thompson-sampling.pdf) from Chapelle and Li, which showed strong empirical evidence of its efficiency. Let us try it for ourselves!
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T07:20:33.342696Z", "iopub.status.busy": "2020-09-30T07:20:33.342473Z", "iopub.status.idle": "2020-09-30T07:20:33.350299Z", "shell.execute_reply": "2020-09-30T07:20:33.349602Z", "shell.execute_reply.started": "2020-09-30T07:20:33.342671Z"}
+# %%
 # e-greedy policy
 class TSPolicy:
 
@@ -599,7 +599,7 @@ class TSPolicy:
         return np.argmax(samples_list)
 
 
-# %% execution={"iopub.execute_input": "2020-09-30T08:19:27.936666Z", "iopub.status.busy": "2020-09-30T08:19:27.936401Z", "iopub.status.idle": "2020-09-30T08:25:35.462651Z", "shell.execute_reply": "2020-09-30T08:25:35.461380Z", "shell.execute_reply.started": "2020-09-30T08:19:27.936634Z"}
+# %%
 # let us plot
 ts_policy = TSPolicy()
 plot_MAB_experiment(ts_policy.choose_bandit, 200, mab.bandit_probs, 'Thompson sampling', 200)
